@@ -42,5 +42,12 @@ jobs:
           path: services/target/surefire-reports
       - name: Build and Analyze with SonarQube
         run: mvn clean verify sonar:sonar -DskipTests
+      - name: Build and analyze (sin tests)
+        env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: mvn -B verify -DskipTests \
+          org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+          -Dsonar.projectKey=FranksVilca_Keycloak
+  
 
 
